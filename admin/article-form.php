@@ -18,33 +18,20 @@ if (isset($_POST['save'])) {
     } elseif (empty($_POST['published_at'])) {
         $message = 'La date est obligatoire !';
     } else {
-        if (isset($_POST['image']) AND !empty($_POST['image'])) {
-            if (isset($_FILES['image']) AND empty($_FILES['image'])) {
-                $message = 'L\'image est obligatoire !';
-            } elseif
-            (!in_array($my_file_extension, $allowed_extensions)) {
-                $message = 'L\'extension est invalide !';
-            } else {
-                do {
-                    $new_file_name = rand();
-                    $destination = '../img/article/' . $new_file_name . '.' . $my_file_extension;
-                } while (file_exists($destination));
+            do {
+                $new_file_name = rand();
+                $destination = '../img/article/' . $new_file_name . '.' . $my_file_extension;
+            } while (file_exists($destination));
 
-                $result = move_uploaded_file($_FILES['image']['tmp_name'], $destination);
-                $queryimg = $db->prepare('INSERT INTO article (image) VALUES (?)');
-                $newArticleImg = $queryImg->execute([
-                    $new_file_name . '.' . $my_file_extension
-                ]);
-            }
-        }
-
-        $query = $db->prepare('INSERT INTO article (title, content, summary, is_published, published_at) VALUES (?, ?, ?, ?, ?)');
+            $result = move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+        $query = $db->prepare('INSERT INTO article (title, content, summary, is_published, published_at, image) VALUES (?, ?, ?, ?, ?, ?)');
         $newArticle = $query->execute([
             $_POST['title'],
             $_POST['content'],
             $_POST['summary'],
             $_POST['is_published'],
-            $_POST['published_at']
+            $_POST['published_at'],
+            $new_file_name . '.' . $my_file_extension
         ]);
 
         $lastInsertedId = $db->lastInsertId();
@@ -69,7 +56,6 @@ if (isset($_POST['save'])) {
             $message = "Impossible d'enregistrer le nouvel article...";
         }
     }
-
 }
 
 
@@ -106,51 +92,49 @@ if (isset($_POST['update'])) {
             } while (file_exists($destination));
 
             $result = move_uploaded_file($_FILES['image']['tmp_name'], $destination);
-        }
-        $query = $db->prepare('UPDATE article SET
+
+            $query = $db->prepare('UPDATE article SET
 		title = :title,
 		content = :content,
 		summary = :summary,
 		is_published = :is_published,
 		published_at = :published_at,
+		image = :image
 		WHERE id = :id'
-        );
-
-        //mise à jour avec les données du formulaire
-        $resultArticle = $query->execute([
-            'title' => $_POST['title'],
-            'content' => $_POST['content'],
-            'summary' => $_POST['summary'],
-            'is_published' => $_POST['is_published'],
-            'published_at' => $_POST['published_at'],
-            'id' => $_POST['id'],
-        ]);
-
-        if (isset($_POST['image']) AND !empty($_POST['image'])){
-            $updateImg = $db->prepare('INSERT INTO article (image) VALUES (?)');
-            $updateImg->execute(array($new_file_name . '.' . $my_file_extension));
-        }
-        $catDelete = $db->prepare('DELETE FROM article_category WHERE article_id = ?');
-        $delete = $catDelete->execute(array($_POST['id']));
-
-        foreach ($_POST['category_id'] as $category) {
-            $updateCate = $db->prepare('INSERT INTO article_category (article_id, category_id) VALUES (?, ?)');
-            $resultInsertCat = $updateCate->execute(
-                [
-                    $_POST['id'],
-                    $category
-                ]
             );
-        }
 
-        //si enregistrement ok
-        if ($resultArticle) {
-            $_SESSION['message'] = 'Article mis à jour !';
-            header('location:article-list.php');
-        } else {
-            $_SESSION['message'] = 'Erreur.';
-        }
+            //mise à jour avec les données du formulaire
+            $resultArticle = $query->execute([
+                'title' => $_POST['title'],
+                'content' => $_POST['content'],
+                'summary' => $_POST['summary'],
+                'is_published' => $_POST['is_published'],
+                'published_at' => $_POST['published_at'],
+                'image' => $new_file_name . '.' . $my_file_extension,
+                'id' => $_POST['id'],
+            ]);
 
+            $catDelete = $db->prepare('DELETE FROM article_category WHERE article_id = ?');
+            $delete = $catDelete->execute(array($_POST['id']));
+
+            foreach ($_POST['category_id'] as $category) {
+                $updateCate = $db->prepare('INSERT INTO article_category (article_id, category_id) VALUES (?, ?)');
+                $resultInsertCat = $updateCate->execute(
+                    [
+                        $_POST['id'],
+                        $category
+                    ]
+                );
+            }
+
+            //si enregistrement ok
+            if ($resultArticle) {
+                $_SESSION['message'] = 'Article mis à jour !';
+                header('location:article-list.php');
+            } else {
+                $_SESSION['message'] = 'Erreur.';
+            }
+        }
     }
 }
 
@@ -225,14 +209,14 @@ if (isset($_GET['article_id']) && isset($_GET['action']) && $_GET['action'] == '
             </header>
             <ul class="nav nav-tabs justify-content-center nav-fill" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active <? //= isset($_POST['register']) ? 'active' : ''; ?>" data-toggle="tab"
-                       href="#infos" role="tab" aria-expanded="<? //= isset($_POST['register']) ? 'true' : 'false'; ?>">Infos</a>
+                    <a class="nav-link active <?//= isset($_POST['register']) ? 'active' : ''; ?>" data-toggle="tab"
+                       href="#infos" role="tab" aria-expanded="<?//= isset($_POST['register']) ? 'true' : 'false'; ?>">Infos</a>
                 </li>
                 <?php if (isset($_GET['article_id'])): ?>
                     <li class="nav-item">
-                        <a class="nav-link <? //= isset($_POST['add_image']) ? 'active' : ''; ?>" data-toggle="tab"
+                        <a class="nav-link <?//= isset($_POST['add_image']) ? 'active' : ''; ?>" data-toggle="tab"
                            href="#images" role="tab"
-                           aria-expanded="<? //= isset($_POST['add_image']) ? 'true' : 'false'; ?>">Images</a>
+                           aria-expanded="<?//= isset($_POST['add_image']) ? 'true' : 'false'; ?>">Images</a>
                     </li>
                 <?php endif; ?>
             </ul>
@@ -243,8 +227,7 @@ if (isset($_GET['article_id']) && isset($_GET['action']) && $_GET['action'] == '
             <?php endif; ?>
 
             <div class="tab-content">
-                <div class="tab-pane container-fluid active <? //= isset($_POST['register']) ? 'active' : ''; ?>"
-                     id="infos"
+                <div class="tab-pane container-fluid active <?//= isset($_POST['register']) ? 'active' : ''; ?>" id="infos"
                      role="tabpanel">
                     <!-- Si $article existe, chaque champ du formulaire sera pré-remplit avec les informations de l'article -->
                     <?php if (isset($_GET['article_id'])): ?>
@@ -340,8 +323,9 @@ if (isset($_GET['article_id']) && isset($_GET['action']) && $_GET['action'] == '
                         </form>
                 </div>
 
-                <div class="tab-pane container-fluid <? //= isset($_POST['add_image']) ? 'active' : ''; ?>"
-                     id="images" role="tabpanel">
+                <div class="tab-pane container-fluid <?//= isset($_POST['add_image']) ? 'active' : ''; ?>"
+                     id="images" role="tabpanel"
+                ">
                 <?php if (isset($resultArticles)): ?>
                     <div class="bg-success text-white p-2 my-4">Image ajoutée avec succès !</div><?php endif; ?>
 

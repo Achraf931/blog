@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  Dim 14 avr. 2019 à 19:46
+-- Généré le :  Dim 14 avr. 2019 à 21:40
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -54,7 +54,9 @@ INSERT INTO `article` (`id`, `title`, `published_at`, `summary`, `content`, `is_
 (12, 'Dragon Ball', '2019-01-01', 'Aucun résumé', 'Aucun contenu', 1, '7527.jpg'),
 (13, 'Supergirl', '2019-01-03', 'Aucun résumé', 'Aucun contenu', 1, '9678.jpg'),
 (72, 'Goku', '2019-04-04', 'Pas de résumé', 'Pas de contenu', 1, '1704527130.jpg'),
-(79, 'Deadpool', '2019-04-09', 'Aucun résumé', '', 1, NULL);
+(79, 'Deadpool', '2019-04-09', 'Aucun résumé', '', 1, NULL),
+(80, 'Arrow', '2019-03-03', 'Aucun résumé', '', 1, NULL),
+(82, 'Spidey', '2019-04-14', 'Aucun résumé', '', 1, '1234893467.jpg');
 
 -- --------------------------------------------------------
 
@@ -152,7 +154,11 @@ INSERT INTO `article_category` (`id`, `article_id`, `category_id`) VALUES
 (133, 76, 47),
 (134, 76, 52),
 (135, 76, 108),
-(145, 79, 9);
+(151, 82, 108),
+(147, 80, 108),
+(146, 80, 9),
+(145, 79, 9),
+(150, 82, 9);
 
 -- --------------------------------------------------------
 
@@ -177,7 +183,7 @@ INSERT INTO `category` (`id`, `name`, `description`, `image`) VALUES
 (52, 'Théâtre', 'Dates, représentations, avis...', NULL),
 (108, 'Jeux vidéos', 'Videos, tests...', NULL),
 (113, 'Mangas', 'Description test', 'eps1_640x360.jpg'),
-(116, 'Hentai', '', '701393806.png');
+(116, 'Hentai', '', '1146590386.jpg');
 
 -- --------------------------------------------------------
 
@@ -266,13 +272,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT pour la table `article_category`
 --
 ALTER TABLE `article_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT pour la table `category`
