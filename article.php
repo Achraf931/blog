@@ -40,7 +40,7 @@ else{ //sinon je redirige
 			<main class="col-9">
 				<article>
 					<h1><?= $article['title']; ?></h1>
-                    <img class="pb-4 img-fluid" src="img/article/<?php echo $article['image']; ?>" alt="">
+                    <img class="pb-4 img-fluid" src="img/article/<?= $article['image']; ?>" alt="">
                     <strong class="article-category">[<?= $article['category_name']; ?>]</strong>
 					<span class="article-date">
 						<!-- affichage de la date de l'article selon le format %A %e %B %Y -->

@@ -47,7 +47,7 @@ $homeArticles = $query->fetchAll();
                         <div class="row">
                             <?php if (isset($article['image']) AND !empty($article['image'])): ?>
                                 <div class="col-12 col-md-4 col-lg-3">
-                                    <img class="img-fluid" src="img/article/<?php echo $article['image']; ?>" alt="">
+                                    <img class="img-fluid" src="img/article/<?= $article['image']; ?>" alt="">
                                 </div>
                             <?php endif; ?>
                             <div class="col-12 col-md-8 col-lg-9">
@@ -59,7 +59,7 @@ $homeArticles = $query->fetchAll();
                                 <div class="article-content">
                                     <?php echo $article['summary']; ?>
                                 </div>
-                                <a href="article.php?article_id=<?php echo $article['id']; ?>">> Lire l'article</a>
+                                <a href="article.php?article_id=<?= $article['id']; ?>">> Lire l'article</a>
                             </div>
                         </div>
                     </article>

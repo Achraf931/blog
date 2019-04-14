@@ -15,7 +15,7 @@ if (isset($_GET['category_id'])) {
 		ON a.id = ac.article_id
 		JOIN category c ON ac.category_id = c.id
 		WHERE ac.category_id = ? AND a.published_at <= NOW() AND a.is_published = 1
-		GROUP BY a.id
+		GROUP BY a.id DESC
 		ORDER BY a.published_at DESC');
 
     $queryArticles->execute(array($_GET['category_id']));
@@ -46,7 +46,7 @@ $articles = $queryArticles->fetchAll();
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <title><?php if (isset($_GET['category_id'])): ?><?= $selectedCategory['name']; ?><?php else: ?>Tous les articles<?php endif; ?>
         - Mon premier blog !</title>
@@ -63,7 +63,7 @@ $articles = $queryArticles->fetchAll();
                     <?php if (isset($_GET['category_id'])): ?>
                         <h1 class="mb-4"><?= $selectedCategory['name']; ?></h1>
                         <?php if (isset($selectedCategory['image']) AND !empty($selectedCategory['image'])): ?>
-                            <img class="pb-4 img-fluid" src="img/category/<?php echo $selectedCategory['image']; ?>">
+                            <img class="pb-4 img-fluid" src="img/category/<?php echo $selectedCategory['image']; ?>" alt="">
                         <?php endif; ?>
                     <?php else: ?>
                         <h1 class="mb-4">Tous les articles :</h1>
@@ -82,7 +82,7 @@ $articles = $queryArticles->fetchAll();
                                 <div class="row">
                                     <?php if (isset($article['image']) AND !empty($article['image'])): ?>
                                         <div class="col-12 col-md-4 col-lg-3">
-                                            <img class="pb-4 img-fluid" src="img/article/<?php echo $article['image']; ?>" alt="">
+                                            <img class="pb-4 img-fluid" src="img/article/<?= $article['image']; ?>" alt="">
                                         </div>
                                     <?php endif; ?>
                                     <div class="col-12 col-md-8 col-lg-9">
