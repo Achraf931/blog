@@ -19,7 +19,7 @@
     <div class="row my-3 article-content">
 
 
-        <?php require './partials/nav.php'; ?>
+        <?php require './controllers/controller_nav.php'; ?>
 
 
         <main class="col-9">

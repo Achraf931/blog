@@ -1,5 +1,6 @@
 <?php
-function updateUser($update){
+function updateUser($update)
+{
     $db = dbConnect();
     if ($update) {
         //début de la chaîne de caractères de la requête de mise à jour
@@ -14,13 +15,15 @@ function updateUser($update){
         ];
 
         //uniquement si l'admin souhaite modifier le mot de passe
-        if (!empty($_POST['password']) AND !empty($_POST['password_confirm']) AND $_POST['password'] == $_POST['password_confirm']) {
-            //concaténation du champ password à mettre à jour
-            $queryString .= ', password = :password ';
-            //ajout du paramètre password à mettre à jour
-            $queryParameters['password'] = hash('md5', $_POST['password']);
-        } else {
-            return $message = 'Vos mots de passe ne correspondent pas !';
+        if (!empty($_POST['password'])) {
+            if ($_POST['password'] == $_POST['password_confirm']) {
+                //concaténation du champ password à mettre à jour
+                $queryString .= ', password = :password ';
+                //ajout du paramètre password à mettre à jour
+                $queryParameters['password'] = hash('md5', $_POST['password']);
+            } else {
+                return $message = 'Vos mots de passe ne correspondent pas !';
+            }
         }
 
         //fin de la chaîne de caractères de la requête de mise à jour
@@ -31,15 +34,16 @@ function updateUser($update){
         $result = $query->execute($queryParameters);
 
         if ($result) {
-            return $message = '<div class="bg-success text-white p-2 mb-4">Modification réussi !</div>';
             $_SESSION['user']['firstname'] = $_POST['firstname'];
+            return $message = '<div class="bg-success text-white p-2 mb-4">Modification réussi !</div>';
         } else {
             return $message = 'Modification impossible !';
         }
     }
 }
 
-function recupInfo(){
+function recupInfo()
+{
     $db = dbConnect();
 
     $reqUser = $db->prepare("SELECT * FROM user WHERE id = ?");

@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebe9f1eb-c975-406d-8b62-49db7a6e53d1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/controllers/controller_user-profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/controller_user-profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/model_user-profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/model_user-profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user-profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-profile.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,20 +27,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/model_user-profile.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="433">
-              <caret line="34" column="65" lean-forward="true" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
+              <caret line="34" column="104" selection-start-line="34" selection-start-column="104" selection-end-line="34" selection-end-column="104" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/controller_user-profile.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="230">
               <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/user-profile.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -75,7 +85,6 @@
         <option value="$PROJECT_DIR$/index copie.php" />
         <option value="$PROJECT_DIR$/index2.php" />
         <option value="$PROJECT_DIR$/partials/nav.php" />
-        <option value="$PROJECT_DIR$/views/user-profile.php" />
         <option value="$PROJECT_DIR$/admin/views/index.php" />
         <option value="$PROJECT_DIR$/admin/models/model_index.php" />
         <option value="$PROJECT_DIR$/admin/controllers/controller_index.php" />
@@ -106,8 +115,9 @@
         <option value="$PROJECT_DIR$/models/model_login-register.php" />
         <option value="$PROJECT_DIR$/models/model_article.php" />
         <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/models/model_user-profile.php" />
         <option value="$PROJECT_DIR$/controllers/controller_user-profile.php" />
+        <option value="$PROJECT_DIR$/views/user-profile.php" />
+        <option value="$PROJECT_DIR$/models/model_user-profile.php" />
       </list>
     </option>
   </component>
@@ -230,12 +240,12 @@
       <workItem from="1555954440078" duration="1325000" />
       <workItem from="1555955997909" duration="341000" />
       <workItem from="1555956345627" duration="18000" />
-      <workItem from="1555956411144" duration="1519000" />
+      <workItem from="1555956411144" duration="2248000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108335000" />
+    <option name="totallyTimeSpent" value="109064000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="951" extended-state="0" />
@@ -500,13 +510,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/user-profile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/model_article.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -535,13 +538,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/model_login-register.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/model_nav.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
@@ -554,10 +550,17 @@
         <state relative-caret-position="-651" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/model_user-profile.php">
+    <entry file="file://$PROJECT_DIR$/views/user-profile.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="34" column="65" lean-forward="true" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
+        <state relative-caret-position="483">
+          <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/model_login-register.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="727">
+          <caret line="71" column="12" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -565,6 +568,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/model_user-profile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="34" column="104" selection-start-line="34" selection-start-column="104" selection-end-line="34" selection-end-column="104" />
         </state>
       </provider>
     </entry>
