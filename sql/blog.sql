@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  Dim 14 avr. 2019 à 21:40
+-- Généré le :  lun. 22 avr. 2019 à 19:55
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -54,9 +54,8 @@ INSERT INTO `article` (`id`, `title`, `published_at`, `summary`, `content`, `is_
 (12, 'Dragon Ball', '2019-01-01', 'Aucun résumé', 'Aucun contenu', 1, '7527.jpg'),
 (13, 'Supergirl', '2019-01-03', 'Aucun résumé', 'Aucun contenu', 1, '9678.jpg'),
 (72, 'Goku', '2019-04-04', 'Pas de résumé', 'Pas de contenu', 1, '1704527130.jpg'),
-(79, 'Deadpool', '2019-04-09', 'Aucun résumé', '', 1, NULL),
-(80, 'Arrow', '2019-03-03', 'Aucun résumé', '', 1, NULL),
-(82, 'Spidey', '2019-04-14', 'Aucun résumé', '', 1, '1234893467.jpg');
+(80, 'Arrow', '2019-03-03', 'Aucun résumé', '', 1, '2011337243.jpg'),
+(82, 'Minions', '2019-04-14', 'Aucun résumé', '', 1, '1630818458.jpg');
 
 -- --------------------------------------------------------
 
@@ -154,11 +153,12 @@ INSERT INTO `article_category` (`id`, `article_id`, `category_id`) VALUES
 (133, 76, 47),
 (134, 76, 52),
 (135, 76, 108),
-(151, 82, 108),
-(147, 80, 108),
-(146, 80, 9),
-(145, 79, 9),
-(150, 82, 9);
+(155, 80, 108),
+(154, 80, 9),
+(179, 82, 108),
+(178, 82, 52),
+(177, 82, 47),
+(176, 82, 9);
 
 -- --------------------------------------------------------
 
@@ -278,7 +278,7 @@ ALTER TABLE `article`
 -- AUTO_INCREMENT pour la table `article_category`
 --
 ALTER TABLE `article_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=180;
 
 --
 -- AUTO_INCREMENT pour la table `category`
