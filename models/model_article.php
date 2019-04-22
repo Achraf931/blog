@@ -9,26 +9,24 @@ if (isset($_GET['logout']) && isset($_SESSION['user'])) {
 function getArticles($limit = false, $category = false){
     $db = dbConnect();
 
-    $queryString = 'SELECT title, GROUP_CONCAT(name) as category_name, published_at, summary, article.id, article.image
- FROM article INNER JOIN article_category
- ON article.id = article_category.article_id
- 
- INNER JOIN category
- ON article_category.category_id = category.id
- WHERE published_at <= NOW() AND is_published = 1
-     ';
+    $queryString = 'SELECT title, GROUP_CONCAT(name) as category_name, published_at, summary, a.id, a.image
+ FROM article a JOIN article_category ac
+ ON a.id = ac.article_id
+ JOIN category c
+ ON ac.category_id = c.id
+ WHERE published_at <= NOW() AND is_published = 1 ';
 
     if ($category){
-        $queryString .= ' AND article_category.category_id = ' . $category;
+        $queryString .= ' AND ac.category_id = ' . $category;
     }
 
     if ($limit){
-        $queryString .= ' GROUP BY article.id DESC
+        $queryString .= ' GROUP BY a.id DESC
 	ORDER BY published_at DESC LIMIT ' . $limit;
     }
 
     else{
-        $queryString .= ' GROUP BY article.id DESC
+        $queryString .= ' GROUP BY a.id DESC
 	ORDER BY published_at DESC ';
     }
 
@@ -40,14 +38,13 @@ function getOneArticle($articleId){
 
     $db = dbConnect();
 
-    $query = $db->prepare('SELECT title, GROUP_CONCAT(name) as name, published_at, summary, content, article.id, article.image
- FROM article INNER JOIN article_category
- ON article.id = article_category.article_id
- 
- INNER JOIN category
- ON article_category.category_id = category.id
- WHERE article.id = ? AND published_at <= NOW() AND is_published = 1
-     GROUP BY article.id');
+    $query = $db->prepare('SELECT title, GROUP_CONCAT(name) as name, published_at, summary, content, a.id, a.image
+ FROM article a JOIN article_category ac
+ ON a.id = ac.article_id
+ JOIN category c
+ ON ac.category_id = c.id
+ WHERE a.id = ? AND published_at <= NOW() AND is_published = 1
+GROUP BY a.id');
 
     $query->execute( array($articleId) );
 
