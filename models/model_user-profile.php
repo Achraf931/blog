@@ -39,7 +39,7 @@ function updateUser($update){
     }
 }
 
-function recupInfo($recup){
+function recupInfo(){
     $db = dbConnect();
 
     $reqUser = $db->prepare("SELECT * FROM user WHERE id = ?");

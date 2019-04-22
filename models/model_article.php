@@ -1,11 +1,5 @@
 <?php
 
-
-if (isset($_GET['logout']) && isset($_SESSION['user'])) {
-    //la fonction unset() détruit une variable ou une partie de tableau. ici on détruit la session user
-    unset($_SESSION["user"]);
-}
-
 function getArticles($limit = false, $category = false){
     $db = dbConnect();
 

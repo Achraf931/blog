@@ -56,7 +56,7 @@ function registerFunc($register)
             //si tout les tests ci-dessus sont passés avec succès, on peut enregistrer l'utilisateur
             //le champ is_admin étant par défaut à 0 dans la base de données, inutile de le renseigner dans la requête
             $query = $db->prepare('INSERT INTO user (firstname,lastname,email,password,bio) VALUES (?, ?, ?, ?, ?)');
-            $newUser = $query->execute([
+            $query->execute([
                 $_POST['firstname'],
                 $_POST['lastname'],
                 $_POST['email'],

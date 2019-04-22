@@ -15,6 +15,11 @@ function dbConnect(){
 $db = dbConnect();
 session_start();
 
+if (isset($_GET['logout']) && isset($_SESSION['user'])) {
+    //la fonction unset() détruit une variable ou une partie de tableau. ici on détruit la session user
+    unset($_SESSION["user"]);
+}
+
 if (isset($_GET['page'])){
     switch ($_GET['page']){
         case 'article_list':
