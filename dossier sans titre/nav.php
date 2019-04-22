@@ -11,22 +11,22 @@
 	<p>
 		<a class="d-block btn btn-danger mb-4 mt-2" href="index.php?logout">Déconnexion</a>
 		<?php if($_SESSION['user']['is_admin'] == 0): ?>
-        <a class="d-block btn btn-warning mb-4 mt-2" href="user-profile.php">Profile</a>
+        <a class="d-block btn btn-warning mb-4 mt-2" href="index.php?page=user-profile">Profile</a>
         <?php else: ?>
         <a class="d-block btn btn-warning mb-4 mt-2" href="admin/index.php">Administration</a>
         <?php endif; ?>
 	</p>
 	<?php else: ?>
 	<!-- Sinon afficher un boutton de connexion -->
-	<a class="d-block btn btn-primary mb-4 mt-2" href="login-register.php">Connexion / inscription</a>
+	<a class="d-block btn btn-primary mb-4 mt-2" href="index.php?page=login-register">Connexion / inscription</a>
 	<?php endif; ?>
 
 	<b>Catégories :</b>
 	<ul>
-		<li><a href="article_list.php">Tous les articles</a></li>
+		<li><a href="index.php?page=article_list">Tous les articles</a></li>
 		<!-- liste des catégories -->
 		<?php while($category = $query->fetch()): ?>
-		<li><a href="article_list.php?category_id=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a></li>
+		<li><a href="index.php?page=article_list&category_id=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a></li>
 		<?php endwhile; ?>
 
 		<?php $query->closeCursor(); ?>
